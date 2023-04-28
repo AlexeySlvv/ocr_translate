@@ -16,9 +16,10 @@ class ArgosDict(TypedDict):
     to_code: str
 
 
-pytesseract.pytesseract.tesseract_cmd = r"./tesseract/tesseract"
+pytesseract.pytesseract.tesseract_cmd = r"/usr/bin/tesseract"
 
 available_langs = pytesseract.pytesseract.get_languages()
+argostranslate.package.update_package_index()
 
 
 def save_ocr(out_json: str) -> None:
@@ -44,7 +45,6 @@ def argos_packages() -> List[ArgosDict]:
 
 
 def translate_text(filename: str, ocr_lang: str, from_code: str, to_code: str) -> Tuple[str, str]:
-    argostranslate.package.update_package_index()
     available_packages = argostranslate.package.get_available_packages()
 
     img_cv = cv2.imread(filename)

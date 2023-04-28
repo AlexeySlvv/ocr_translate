@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import (
+from PyQt6.QtWidgets import (
     QMainWindow,
     QWidget,
     QPushButton,
@@ -11,9 +11,9 @@ from PyQt5.QtWidgets import (
     QMessageBox,
 )
 
-from PyQt5.QtCore import Qt
+from PyQt6.QtCore import Qt
 
-from PyQt5.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap
 
 from ocr_translate import available_langs, translate_text, argos_packages
 
@@ -52,19 +52,19 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.ocr_lang_cbox, 0, 3)
         layout.addWidget(self.tr_from_cbox, 0, 4, 1, 1)
         layout.addWidget(self.tr_to_cbox, 0, 6, 1, 1)
+        layout.addWidget(self.start_btn, 0, 7, 1, 1)
 
         layout.addWidget(self.image_lbl, 1, 0, 2, 4)
         layout.addWidget(self.ocr_text_tedit, 1, 4, 2, 2)
         layout.addWidget(self.tr_text_tedit, 1, 6, 2, 2)
-
-        layout.addWidget(self.start_btn, 3, 0, 1, 2)
+        
 
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
         
     def on_sauce_open_clicked(self):
-        filter = "Images (*.jpg *.jpeg *.png *.bmp)"
+        filter = "Images (*.jpg *.jpeg *.png *.bmp *.webp)"
         file_name, _ = QFileDialog.getOpenFileName(filter=filter)
         self.sauce_ledit.setText(file_name)
         self.image_lbl.setPixmap(QPixmap(file_name))
